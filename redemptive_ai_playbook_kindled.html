@@ -1,0 +1,1745 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --k-light: #e9f0ff;
+    --k-sky: #8fdaff;
+    --k-blue: #1f67ff;
+    --k-navy: #05009f;
+    --k-dark: #000131;
+    --k-white: #ffffff;
+    --k-gold: #c8962a;
+    --k-soft: #f4f7ff;
+    --k-border: #d0deff;
+    --k-warn: #ff6b35;
+    --k-green: #1a7a4a;
+    --k-red: #c0392b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body, .playbook-root {
+    font-family: 'DM Sans', sans-serif;
+    background: #ffffff;
+    color: var(--k-dark);
+    line-height: 1.6;
+  }
+
+  .playbook-root {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* COVER */
+  .cover {
+    background: var(--k-dark);
+    color: var(--k-white);
+    padding: 60px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-glow {
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(31,103,255,0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-glow2 {
+    position: absolute;
+    bottom: -60px; left: -40px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(143,218,255,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(31,103,255,0.25);
+    border: 1px solid rgba(143,218,255,0.4);
+    border-radius: 0;
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--k-sky);
+    margin-bottom: 28px;
+  }
+  .cover-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--k-sky);
+    margin-bottom: 12px;
+  }
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+  .cover-title span {
+    color: var(--k-sky);
+  }
+  .cover-subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(233,240,255,0.75);
+    max-width: 520px;
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+  .cover-meta {
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .cover-pill {
+    background: rgba(31,103,255,0.2);
+    border: 1px solid rgba(31,103,255,0.4);
+    border-radius: 0;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: var(--k-sky);
+    font-weight: 500;
+  }
+
+  /* NAV / TOC */
+  .toc {
+    background: var(--k-soft);
+    border-bottom: 1px solid var(--k-border);
+    padding: 28px 48px;
+  }
+  .toc-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--k-navy);
+    margin-bottom: 14px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+  }
+  .toc-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px;
+    color: var(--k-navy);
+    font-weight: 500;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 0;
+    transition: background 0.15s;
+  }
+  .toc-item:hover { background: var(--k-light); }
+  .toc-num {
+    background: var(--k-blue);
+    color: white;
+    border-radius: 0;
+    width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* SECTION WRAPPER */
+  .section {
+    padding: 44px 48px;
+    border-bottom: 1px solid var(--k-border);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-alt { background: var(--k-soft); }
+
+  /* SECTION HEADERS */
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--k-blue);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--k-dark);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .section-lead {
+    font-size: 15px;
+    color: #3a4060;
+    max-width: 640px;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  /* SCRIPTURE CALLOUT */
+  .scripture {
+    background: var(--k-dark);
+    color: var(--k-sky);
+    border-radius: 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    position: relative;
+  }
+  .scripture-ref {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(143,218,255,0.5);
+    margin-top: 8px;
+  }
+  .scripture::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: rgba(31,103,255,0.4);
+    position: absolute;
+    top: -8px; left: 16px;
+    line-height: 1;
+  }
+
+  /* FRAMEWORK CARDS */
+  .framework-5q {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .fq-card {
+    background: var(--k-white);
+    border: 1.5px solid var(--k-border);
+    border-radius: 0;
+    padding: 18px 14px;
+    text-align: center;
+    position: relative;
+  }
+  .fq-card.active {
+    border-color: var(--k-blue);
+    background: var(--k-light);
+  }
+  .fq-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--k-blue);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .fq-q {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--k-dark);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .fq-ref {
+    font-size: 10px;
+    color: #8090b0;
+    font-style: italic;
+  }
+
+  /* PRINCIPLE CARDS */
+  .principle-header {
+    display: flex; align-items: flex-start; gap: 16px;
+    margin-bottom: 16px;
+  }
+  .principle-icon {
+    width: 44px; height: 44px;
+    background: var(--k-blue);
+    border-radius: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 20px;
+    color: white;
+  }
+  .p-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--k-blue);
+    margin-bottom: 2px;
+  }
+  .p-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--k-dark);
+  }
+
+  /* DEPARTMENT TABS */
+  .dept-tabs {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .dept-tab {
+    background: white;
+    border: 1.5px solid var(--k-border);
+    border-radius: 0;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--k-navy);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .dept-tab.active {
+    background: var(--k-blue);
+    border-color: var(--k-blue);
+    color: white;
+  }
+  .dept-tab:hover:not(.active) {
+    background: var(--k-light);
+  }
+
+  /* SCENARIO CARDS */
+  .scenario-grid {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .scenario-grid.visible { display: flex; }
+
+  .scenario-card {
+    background: white;
+    border: 1px solid var(--k-border);
+    border-radius: 0;
+    overflow: hidden;
+  }
+  .sc-header {
+    background: var(--k-dark);
+    padding: 14px 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .sc-tag {
+    background: rgba(31,103,255,0.3);
+    color: var(--k-sky);
+    border-radius: 0;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .sc-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+  .sc-body {
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .sc-body { grid-template-columns: 1fr; }
+  }
+  .sc-col-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sc-col-label.what { color: #5a6080; }
+  .sc-col-label.wrong { color: var(--k-warn); }
+  .sc-col-label.instead { color: var(--k-green); }
+
+  .sc-text {
+    font-size: 12px;
+    color: #3a4060;
+    line-height: 1.55;
+  }
+  .sc-verse {
+    font-size: 10px;
+    color: var(--k-blue);
+    font-weight: 600;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* CHECKLIST */
+  .checklist {
+    display: flex; flex-direction: column; gap: 8px;
+    margin: 16px 0;
+  }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: white;
+    border: 1px solid var(--k-border);
+    border-radius: 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--k-dark);
+  }
+  .check-box {
+    width: 18px; height: 18px;
+    border: 2px solid var(--k-blue);
+    border-radius: 0;
+    flex-shrink: 0;
+    margin-top: 1px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .check-box.checked {
+    background: var(--k-blue);
+  }
+  .check-box.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* RED FLAGS */
+  .redflag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .redflag-card {
+    background: #fff5f5;
+    border: 1.5px solid #ffcccc;
+    border-radius: 0;
+    padding: 14px;
+  }
+  .rf-icon { font-size: 20px; margin-bottom: 6px; }
+  .rf-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--k-red);
+    margin-bottom: 4px;
+  }
+  .rf-text {
+    font-size: 11px;
+    color: #6a2020;
+    line-height: 1.5;
+  }
+
+  /* POLICY TEMPLATE */
+  .policy-section {
+    margin-bottom: 20px;
+  }
+  .policy-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--k-navy);
+    border-bottom: 2px solid var(--k-blue);
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+  .policy-field {
+    background: white;
+    border: 1px solid var(--k-border);
+    border-radius: 0;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #3a4060;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .policy-field strong {
+    color: var(--k-dark);
+    font-weight: 600;
+  }
+  .policy-field em {
+    color: #8090b0;
+    font-size: 11px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 3px;
+    background: linear-gradient(90deg, var(--k-blue), var(--k-sky), var(--k-light));
+    border: none;
+    margin: 0;
+  }
+
+  /* GUTCHECK */
+  .gutcheck {
+    background: linear-gradient(135deg, var(--k-navy), var(--k-dark));
+    color: var(--k-sky);
+    border-radius: 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .gutcheck-label {
+    background: var(--k-blue);
+    color: white;
+    border-radius: 0;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* EXAMPLE PILLS */
+  .example-list {
+    display: flex; flex-direction: column; gap: 6px;
+    margin: 10px 0;
+  }
+  .example-pill {
+    display: flex; align-items: flex-start; gap: 8px;
+    background: var(--k-light);
+    border-radius: 0;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--k-dark);
+    line-height: 1.45;
+  }
+  .ep-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--k-blue);
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  /* CTA */
+  .cta-block {
+    background: var(--k-dark);
+    color: var(--k-white);
+    padding: 44px 48px;
+    text-align: center;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .cta-sub {
+    font-size: 15px;
+    color: rgba(233,240,255,0.7);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--k-blue);
+    color: white;
+    border: none;
+    border-radius: 0;
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0 8px 12px;
+    transition: opacity 0.15s;
+  }
+  .cta-btn:hover { opacity: 0.88; }
+  .cta-btn.outline {
+    background: transparent;
+    border: 1.5px solid rgba(143,218,255,0.4);
+    color: var(--k-sky);
+  }
+
+  /* GRID 2 */
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  @media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .card-sm {
+    background: white;
+    border: 1px solid var(--k-border);
+    border-radius: 0;
+    padding: 14px;
+  }
+  .card-sm-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--k-navy);
+    margin-bottom: 6px;
+  }
+  .card-sm-text {
+    font-size: 12px;
+    color: #3a4060;
+    line-height: 1.55;
+  }
+
+  /* FLOW */
+  .flow-steps {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 20px 0;
+    overflow-x: auto;
+  }
+  .flow-step {
+    flex: 1;
+    min-width: 100px;
+    background: var(--k-light);
+    border: 1.5px solid var(--k-border);
+    border-right: none;
+    padding: 14px 10px;
+    text-align: center;
+    position: relative;
+  }
+  .flow-step:first-child { border-radius: 0; }
+  .flow-step:last-child { border-right: 1.5px solid var(--k-border); border-radius: 0; }
+  .flow-step::after {
+    content: '→';
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--k-blue);
+    font-size: 14px;
+    font-weight: 700;
+    z-index: 1;
+    background: var(--k-light);
+  }
+  .flow-step:last-child::after { display: none; }
+  .fs-num {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--k-blue);
+    margin-bottom: 4px;
+  }
+  .fs-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--k-dark);
+    line-height: 1.35;
+  }
+
+  /* PRINCIPLES OVERVIEW GRID */
+  .p-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .p-ov-card {
+    background: white;
+    border: 1px solid var(--k-border);
+    border-radius: 0;
+    padding: 16px;
+    border-top: 3px solid var(--k-blue);
+  }
+  .p-ov-num {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--k-blue);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .p-ov-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--k-dark);
+    margin-bottom: 6px;
+  }
+  .p-ov-check {
+    font-size: 11px;
+    color: #3a4060;
+    line-height: 1.5;
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--k-light);
+    border: 1px solid var(--k-border);
+    border-radius: 0;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--k-navy);
+    margin: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .bold-accent { color: var(--k-blue); font-weight: 600; }
+
+  .warn-bar {
+    background: #fff8f0;
+    border: 1.5px solid #ffd0a0;
+    border-radius: 0;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #5a3000;
+    margin: 10px 0;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+
+  .green-bar {
+    background: #f0fff6;
+    border: 1.5px solid #a0e0c0;
+    border-radius: 0;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #003a1a;
+    margin: 10px 0;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+
+  .small-grid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 14px 0;
+  }
+  @media (max-width: 560px) { .small-grid3 { grid-template-columns: 1fr; } }
+
+  .mini-card {
+    background: white;
+    border: 1px solid var(--k-border);
+    border-radius: 0;
+    padding: 12px;
+  }
+  .mc-icon { font-size: 18px; margin-bottom: 6px; }
+  .mc-title { font-size: 11px; font-weight: 700; color: var(--k-dark); margin-bottom: 4px; }
+  .mc-text { font-size: 11px; color: #3a4060; line-height: 1.5; }
+</style>
+
+<div class="playbook-root">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-glow"></div>
+    <div class="cover-glow2"></div>
+    <div class="cover-badge">✦ Kindled — Faith &amp; AI</div>
+    <div class="cover-eyebrow">Premium Playbook</div>
+    <div class="cover-title">Kingdom<br><span>AI</span> Playbook</div>
+    <div class="cover-subtitle">A biblical framework for founders and business owners who want to use AI with integrity, build trust, and honor God without sacrificing growth.</div>
+    <div class="cover-meta">
+      <div class="cover-pill">30 Pages of Frameworks</div>
+      <div class="cover-pill">10 Real Business Scenarios</div>
+      <div class="cover-pill">AI Policy Template Included</div>
+      <div class="cover-pill">Decision Checklist</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <div class="toc-label">What's inside</div>
+    <div class="toc-grid">
+      <div class="toc-item"><div class="toc-num">1</div>The Transformation Promise</div>
+      <div class="toc-item"><div class="toc-num">2</div>Why This Playbook Exists</div>
+      <div class="toc-item"><div class="toc-num">3</div>The 5-Question Framework</div>
+      <div class="toc-item"><div class="toc-num">4</div>7 Biblical Principles</div>
+      <div class="toc-item"><div class="toc-num">5</div>10 Business Scenarios</div>
+      <div class="toc-item"><div class="toc-num">6</div>Red Flags Reference</div>
+      <div class="toc-item"><div class="toc-num">7</div>AI Policy Template</div>
+      <div class="toc-item"><div class="toc-num">8</div>Decision Checklist</div>
+      <div class="toc-item"><div class="toc-num">9</div>Bonus Materials</div>
+      <div class="toc-item"><div class="toc-num">10</div>Your Next Step</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: TRANSFORMATION -->
+  <div class="section">
+    <div class="section-eyebrow">Section 01 — The Transformation</div>
+    <div class="section-title">Before This Playbook. After This Playbook.</div>
+    <div class="section-lead">Most business owners are using AI the way the world uses it — chasing efficiency, cutting costs, automating everything. This playbook changes the question you ask before every AI decision.</div>
+
+    <div class="grid2">
+      <div class="card-sm" style="border-top: 3px solid #c0392b;">
+        <div class="card-sm-title" style="color: var(--k-red);">✗ Before: The World's Framework</div>
+        <div class="example-list">
+          <div class="example-pill"><div class="ep-dot" style="background: var(--k-red);"></div>Asking only "Can AI do this?"</div>
+          <div class="example-pill"><div class="ep-dot" style="background: var(--k-red);"></div>Chasing efficiency at any human cost</div>
+          <div class="example-pill"><div class="ep-dot" style="background: var(--k-red);"></div>No policy — you figure it out as you go</div>
+          <div class="example-pill"><div class="ep-dot" style="background: var(--k-red);"></div>Treating AI output as trustworthy by default</div>
+          <div class="example-pill"><div class="ep-dot" style="background: var(--k-red);"></div>Replacing human judgment silently</div>
+          <div class="example-pill"><div class="ep-dot" style="background: var(--k-red);"></div>Eroding dignity without realizing it</div>
+        </div>
+      </div>
+      <div class="card-sm" style="border-top: 3px solid var(--k-green);">
+        <div class="card-sm-title" style="color: var(--k-green);">✓ After: The Redemptive Standard</div>
+        <div class="example-list">
+          <div class="example-pill"><div class="ep-dot"></div>Asking "Can AI do this? Should it? How?"</div>
+          <div class="example-pill"><div class="ep-dot"></div>Measuring success by human flourishing</div>
+          <div class="example-pill"><div class="ep-dot"></div>A clear, biblical AI policy your team trusts</div>
+          <div class="example-pill"><div class="ep-dot"></div>Verifying AI output against truth and values</div>
+          <div class="example-pill"><div class="ep-dot"></div>Keeping humans accountable in decisions</div>
+          <div class="example-pill"><div class="ep-dot"></div>Building businesses that reflect the image of God</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scripture">
+      "No one can serve two masters. For you will hate one and love the other; you will be devoted to one and despise the other. You cannot serve God and be enslaved to money."
+      <div class="scripture-ref">Matthew 6:24 NLT — The core tension every founder must resolve</div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: WHY -->
+  <div class="section section-alt">
+    <div class="section-eyebrow">Section 02 — Why This Playbook Exists</div>
+    <div class="section-title">Responsible AI Isn't Enough</div>
+    <div class="section-lead">The secular world built Responsible AI on two pillars: minimize harm and maximize profit. But you can't serve both God and money. Kingdom AI is a higher standard all Christians are called to — one built on Scripture, not just ethics checklists.</div>
+
+    <div class="small-grid3">
+      <div class="mini-card">
+        <!-- <div class="mc-icon">⚖️</div> -->
+        <div class="mc-title">Responsible AI</div>
+        <div class="mc-text">Transparent, safe, ethical and <em>profit-driven.</em></div>
+      </div>
+      <div class="mini-card" style="border: 1.5px solid var(--k-blue); background: var(--k-light);">
+        <!-- <div class="mc-icon">🔥</div> -->
+        <div class="mc-title">Kingdom AI</div>
+        <div class="mc-text">Transparent, safe, ethical and <em>built on Scripture.</em></div>
+      </div>
+      <div class="mini-card">
+        <!-- <div class="mc-icon">🌐</div> -->
+        <div class="mc-title">The Stakes</div>
+        <div class="mc-text">The secular world is setting norms for AI right now. The Church and Christian founders must bring a different voice.</div>
+      </div>
+    </div>
+
+    <div class="gutcheck">
+      <div class="gutcheck-label">Core Shift</div>
+      The difference between Responsible AI and Kingdom AI is the difference between avoiding lawsuits and building the Kingdom. One minimizes harm. The other pursues human flourishing.
+    </div>
+  </div>
+
+  <!-- SECTION 3: 5-QUESTION FRAMEWORK -->
+  <div class="section">
+    <div class="section-eyebrow">Section 03 — The Core Framework</div>
+    <div class="section-title">The 5-Question Kingdom AI Filter</div>
+    <div class="section-lead">Before your team builds, buys, or deploys any AI tool, run it through these five questions. They aren't compliance checkboxes — they're conscience checkboxes. Use them in meetings, product reviews, service reviews, hiring decisions, and board conversations.</div>
+
+    <div class="framework-5q">
+      <div class="fq-card active">
+        <span class="fq-num">Q1</span>
+        <div class="fq-q">Can AI do this?</div>
+        <div class="fq-ref">Technical Feasibility</div>
+      </div>
+      <div class="fq-card">
+        <span class="fq-num">Q2</span>
+        <div class="fq-q">Should AI do this?</div>
+        <div class="fq-ref">Ethical + Biblical Alignment</div>
+      </div>
+      <div class="fq-card">
+        <span class="fq-num">Q3</span>
+        <div class="fq-q">Who could be harmed?</div>
+        <div class="fq-ref">Imago of God Test</div>
+      </div>
+      <div class="fq-card">
+        <span class="fq-num">Q4</span>
+        <div class="fq-q">Who holds the account?</div>
+        <div class="fq-ref">Stewardship &amp; Governance</div>
+      </div>
+      <div class="fq-card">
+        <span class="fq-num">Q5</span>
+        <div class="fq-q">Is this true?</div>
+        <div class="fq-ref">Scripture-tested Discernment</div>
+      </div>
+    </div>
+
+    <div class="section-lead" style="margin-top: 24px; margin-bottom: 16px; font-size: 14px; color: #3a4060;">Each question unpacked:</div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="card-sm">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="background: var(--k-blue); color: white; border-radius: 0; padding: 4px 10px; font-size: 11px; font-weight: 700; flex-shrink: 0;">Q1 — Feasibility</div>
+          <div>
+            <div class="card-sm-title">Can AI actually do this well?</div>
+            <div class="card-sm-text">Don't deploy AI because it's trending. Verify that the tool performs reliably on this specific task. Many AI applications produce convincing but inaccurate output. Test before you trust.</div>
+            <div class="sc-verse">Business application: Run a pilot before full deployment. Measure error rates.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-sm">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="background: var(--k-navy); color: white; border-radius: 0; padding: 4px 10px; font-size: 11px; font-weight: 700; flex-shrink: 0;">Q2 — Ethics</div>
+          <div>
+            <div class="card-sm-title">Does this align with how God calls us to treat people?</div>
+            <div class="card-sm-text">In Micah 6:8, we are told to act justly. Love mercy. Walk humbly. If an AI application manipulates, deceives, dehumanizes, or exploits even subtly, it fails this question, regardless of ROI.</div>
+            <div class="sc-verse">"No, O people, the Lord has told you what is good,
+            and this is what He requires of you:
+            to do what is right, to love mercy,
+            and to walk humbly with your God." — Micah 6:8 NLT</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-sm">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="background: var(--k-warn); color: white; border-radius: 0; padding: 4px 10px; font-size: 11px; font-weight: 700; flex-shrink: 0;">Q3 — Human Dignity</div>
+          <div>
+            <div class="card-sm-title">Does this honor the image of God in every person it touches?</div>
+            <div class="card-sm-text">Every customer, employee, vendor, and competitor bears the image of God. AI that treats people as data points, reduces them to probabilities, or removes meaningful human interaction fails this test even if it's efficient.</div>
+            <div class="sc-verse">"So God created human beings in His own image.
+              In the image of God He created them;
+              male and female He created them." — Genesis 1:27 NLT</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-sm">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="background: #5a0080; color: white; border-radius: 0; padding: 4px 10px; font-size: 11px; font-weight: 700; flex-shrink: 0;">Q4 — Accountability</div>
+          <div>
+            <div class="card-sm-title">Who is responsible when this AI causes harm?</div>
+            <div class="card-sm-text">Stewardship means you own the outcomes. "The AI decided" is not a biblical response to harm caused. Build accountability before you deploy: who reviews outputs? Who can say no? Who holds the final authority on decisions affecting people's lives?</div>
+            <div class="sc-verse">"Yes, each of us will give a personal account to God." — Romans 14:12 NLT</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-sm">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="background: var(--k-green); color: white; border-radius: 0; padding: 4px 10px; font-size: 11px; font-weight: 700; flex-shrink: 0;">Q5 — Truth</div>
+          <div>
+            <div class="card-sm-title">Is what AI produces tested against Scripture?</div>
+            <div class="card-sm-text">AI generates the most probable words, not necessarily truthful ones. For any AI output that touches decisions about people, verify it. Plausible is not the same as true.</div>
+            <div class="sc-verse">"Make them holy by Your truth,
+              teach them Your word, which is truth." — John 17:17 NLT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLOW DIAGRAM -->
+    <div style="margin-top: 24px;">
+      <div class="section-eyebrow" style="margin-bottom: 10px;">How to use this in a real meeting</div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="fs-num">Step 1</div>
+          <div class="fs-label">Identify the AI use case</div>
+        </div>
+        <div class="flow-step">
+          <div class="fs-num">Step 2</div>
+          <div class="fs-label">Run the 5 Questions</div>
+        </div>
+        <div class="flow-step">
+          <div class="fs-num">Step 3</div>
+          <div class="fs-label">Note which principles apply</div>
+        </div>
+        <div class="flow-step">
+          <div class="fs-num">Step 4</div>
+          <div class="fs-label">Document decision + owner</div>
+        </div>
+        <div class="flow-step">
+          <div class="fs-num">Step 5</div>
+          <div class="fs-label">Review after 30 days</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: 7 PRINCIPLES -->
+  <div class="section section-alt">
+    <div class="section-eyebrow">Section 04 — Biblical Foundation</div>
+    <div class="section-title">7 Principles at a Glance</div>
+    <div class="section-lead">These are the convictions that can shape every AI decision in a Kingdom business. Use them as gut checks, not compliance checkboxes.</div>
+
+    <div class="p-overview-grid">
+      <div class="p-ov-card">
+        <div class="p-ov-num">Principle 01</div>
+        <div class="p-ov-name">Human Dignity</div>
+        <div class="p-ov-check">Every human bears God's image in ways AI cannot replicate. Protect irreducible human worth in every AI application.</div>
+        <div class="sc-verse" style="margin-top: 8px;">Genesis 1:26–27</div>
+      </div>
+      <div class="p-ov-card">
+        <div class="p-ov-num">Principle 02</div>
+        <div class="p-ov-name">Purpose &amp; Meaning</div>
+        <div class="p-ov-check">Build foundational skills first. AI should accelerate God-given callings. Never replace the formation process.</div>
+        <div class="sc-verse" style="margin-top: 8px;">Proverbs 22:29</div>
+      </div>
+      <div class="p-ov-card">
+        <div class="p-ov-num">Principle 03</div>
+        <div class="p-ov-name">Ethical Boundaries</div>
+        <div class="p-ov-check">Just because we can doesn't mean we should. Set firm limits especially where human lives are involved.</div>
+        <div class="sc-verse" style="margin-top: 8px;">Micah 6:8</div>
+      </div>
+      <div class="p-ov-card">
+        <div class="p-ov-num">Principle 04</div>
+        <div class="p-ov-name">Stewardship</div>
+        <div class="p-ov-check">We are stewards of AI, not its advocates. Measure success by human flourishing not just efficiency gains.</div>
+        <div class="sc-verse" style="margin-top: 8px;">1 Corinthians 10:31</div>
+      </div>
+      <div class="p-ov-card">
+        <div class="p-ov-num">Principle 05</div>
+        <div class="p-ov-name">Community &amp; Relationality</div>
+        <div class="p-ov-check">AI that replaces human presence corrodes trust and community. Build connections AI cannot replicate.</div>
+        <div class="sc-verse" style="margin-top: 8px;">John 13:34</div>
+      </div>
+      <div class="p-ov-card">
+        <div class="p-ov-num">Principle 06</div>
+        <div class="p-ov-name">Responsibility</div>
+        <div class="p-ov-check">Trust is gained in drops and lost in buckets. Disclose AI's role. Build accountability before you need it.</div>
+        <div class="sc-verse" style="margin-top: 8px;">Philippians 1:9–10</div>
+      </div>
+      <div class="p-ov-card" style="grid-column: span 1;">
+        <div class="p-ov-num">Principle 07</div>
+        <div class="p-ov-name">Guard Against Deception</div>
+        <div class="p-ov-check">AI generates plausible, not necessarily true. Test everything against Scripture. Never bypass human review.</div>
+        <div class="sc-verse" style="margin-top: 8px;">John 17:17</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: 10 SCENARIOS -->
+  <div class="section">
+    <div class="section-eyebrow">Section 05 — Real Business Scenarios</div>
+    <div class="section-title">10 Scenarios. 4 Departments. What's Been Happening.</div>
+    <div class="section-lead">For each scenario: what real businesses are doing, what's wrong (biblically), and what to do instead.</div>
+
+    <div class="dept-tabs">
+      <div class="dept-tab active" onclick="showDept('marketing', this)">Marketing</div>
+      <div class="dept-tab" onclick="showDept('support', this)"> Customer Support</div>
+      <div class="dept-tab" onclick="showDept('hiring', this)">Hiring</div>
+      <div class="dept-tab" onclick="showDept('operations', this)">Operations</div>
+    </div>
+
+    <!-- MARKETING SCENARIOS -->
+    <div id="dept-marketing" class="scenario-grid visible">
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Marketing · 01</div>
+          <div class="sc-title">AI-Generated Personalization That Crosses Into Manipulation</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Using AI to analyze buyer psychology and serve hyper-personalized urgency messaging — countdown timers, scarcity signals, and fear-of-missing-out copy generated at scale to maximize conversions. Companies like fashion retailers are A/B testing thousands of AI-crafted messages simultaneously to exploit psychological pressure points.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">This treats customers as targets, not image-bearers. When AI exploits fear, insecurity, or urgency to override rational decision-making, it violates Principle 03 - Ethical Boundaries and crosses from persuasion into manipulation. It dishonors the person's God-given ability to reason and choose freely.</div>
+            <div class="sc-verse">Principle 03 — Micah 6:8: "Act justly, love mercy"</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Use AI to personalize relevance — match products to genuine needs — without engineering psychological pressure. Write a clear AI marketing policy that defines the line between compelling communication and manipulation. Have your team answer: "Would this message honor the customer if they knew how it was crafted?"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Marketing · 02</div>
+          <div class="sc-title">AI-Written Content Presented as Human Thought Leadership</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Executives and founders publish AI-drafted LinkedIn articles, blog posts, and newsletters as if they reflect their personal insights and convictions without any disclosure. Content mills are producing thousands of "expert" articles per day using AI with no human expertise behind them. Entire personal brands are now synthetic.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">Presenting AI output as your own thought and experience is a form of deception. It is a violation of Principle 06-Responsibility and Principle 07-Guard Against Deception. Your audience trusts that your words reflect your actual mind and convictions. Silent AI ghostwriting breaks that covenant of honesty.</div>
+            <div class="sc-verse">Principle 06 — "Trust is gained in drops and lost in buckets"</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Use AI to draft, research, and structure but own the voice, convictions, and final words. Develop a transparent disclosure standard for your brand: "AI-assisted" is honest. Publish content that truly reflects your expertise, then use AI to amplify it, not replace it. Your audience will sense the difference.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Marketing · 03</div>
+          <div class="sc-title">AI Customer Segmentation That Creates Hidden Discrimination</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Businesses are using AI models trained on historical purchase data to segment and target customers, often unknowingly encoding past biases. One major retailer's AI showed premium product ads predominantly to wealthier addresses, effectively excluding lower-income communities from opportunities. The algorithm learned from biased history.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">When AI concentrates advantage for some and systematically excludes others, it violates the Principle of Stewardship. We are called to serve the common good and watch for who gets left behind. "Bias at scale" is still injustice, regardless of whether a human made the decision.</div>
+            <div class="sc-verse">Principle 04 — Stewardship: "Address inequality rather than increasing it"</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Audit your AI segmentation models for demographic disparities. Ask: "Does this AI systematically disadvantage any group?" Build equity reviews into your quarterly AI audits. Intentionally design campaigns that expand access rather than restrict it. Measure success not just by conversion rate but by who you're reaching.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Marketing · 04</div>
+          <div class="sc-title">AI-Generated Testimonials and Synthetic Social Proof</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Some businesses use AI to generate fake reviews, produce AI images of "satisfied customers," or create synthetic testimonial videos using deepfake technology. Even legitimate businesses use AI to write testimonial drafts they ask customers to approve then use them without clear context about their origin.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">Fabricating social proof is bearing false witness against your neighbor (Exodus 20:16). It deceives prospects into trusting something that isn't true. Even "lightly enhanced" testimonials breach the covenant of honest dealing. Principle 07 is unequivocal: God's people are called to be anchored in truth, not manufacture it.</div>
+            <div class="sc-verse">Principle 07 — John 14:6: Truth is non-negotiable</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Build genuine review systems. Use AI to prompt customers for feedback, organize real testimonials, and identify patterns in praise. Let authentic voices speak. Your integrity will outlast any synthetic campaign studies show that customers increasingly detect artificial social proof. Real trust is a sustainable competitive advantage.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Marketing · 05</div>
+          <div class="sc-title">Replacing Creative Teams Entirely With AI-Generated Content</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Agencies and in-house teams are eliminating junior copywriters, graphic designers, and creative strategists. They are replacing them with AI pipelines that produce "good enough" content at a fraction of the cost. Some companies now run entire content marketing operations with a single editor overseeing AI output, with no human creatives on staff.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">Human creativity reflects the image of God. It's a spiritual activity, not just an economic function. Eliminating creative roles wholesale fails both Principle 01 - Dignity and Principle 02 - Purpose. People's God-given creative capacities are not being treated as gifts to be stewarded.</div>
+            <div class="sc-verse">Principle 01 — Genesis 1:27: Human creativity reflects God's creative nature</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Redesign creative roles rather than eliminate them. Let AI handle iteration, formatting, and volume but invest in humans who direct, filter, and infuse genuine insight and relationship. Develop a policy, for example: "AI handles the 80%. Humans own the 20% that matters most." Create a pathway for creative staff to grow with AI, not be replaced by it.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOMER SUPPORT SCENARIOS -->
+    <div id="dept-support" class="scenario-grid">
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Customer Support · 01</div>
+          <div class="sc-title">AI Chatbots Handling Emotional Crisis Without Human Escalation</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Companies in financial services, healthcare, and mental health apps are deploying AI chatbots as the primary — sometimes sole — support channel. Customers in distress (financial hardship, grief, health emergencies) interact with AI without any human escalation pathway. Some chatbots are scripted to avoid escalation to reduce labor costs.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">Conversations about health or finance should never have a chatbot interface when you are in a distressed situation. This is a non-negotiable ethical boundary (Principle 03). Routing hurting people to algorithms fails the most basic call of Christian business: to love our neighbor as ourselves.</div>
+            <div class="sc-verse">Principle 05 — John 13:34: "Love one another as I have loved you"</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Define mandatory human escalation triggers: any mention of distress, loss, financial crisis, health emergency, or anger. Build escalation into your AI system design as a core feature. Train humans specifically for high-emotion conversations. Post your escalation commitment publicly.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Customer Support · 02</div>
+          <div class="sc-title">AI Pretending to Be a Named Human Agent</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Many businesses give AI chatbots human names ("Hi, I'm Sarah from the support team!") and human-sounding personas, deliberately concealing that the customer is speaking to an AI. Some go further: using AI to generate follow-up emails signed by a specific human team member who didn't write them and may not have reviewed them.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">This is straightforward deception, a direct violation of Principle 07. It corrodes the trust that makes business relationships possible. When customers discover the deception (and they will), trust collapses entirely.</div>
+            <div class="sc-verse">Principle 07 — "We must be truthful and transparent in our use of AI"</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Be transparent. Name your AI what it is: "Hi, I'm Aria — your AI assistant." Research shows customers respect honesty more than they resist AI. Use AI to handle volume and speed; reserve human names for actual humans. When humans follow up on AI conversations, say so. Disclosure is the foundation of lasting trust.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Customer Support · 03</div>
+          <div class="sc-title">AI Voice Cloning for Customer Calls</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Some companies are using AI voice-cloning technology to create synthetic versions of popular support staff then deploying those voice clones to handle calls at scale, without the person's full knowledge of how their voice is being used. Customers believe they are speaking to a real person they may have interacted with before.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">This violates both the employee (whose voice and likeness are used without full consent) and the customer (who is deceived into believing in a human presence that doesn't exist). Principle 01 (Dignity) applies to employees as much as customers. </div>
+            <div class="sc-verse">Principle 01 — The image of God applies to your employees too</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Never clone an employee's voice without explicit, documented, ongoing consent — and never without full customer disclosure. If using AI voice agents, build a distinct, clearly non-human voice identity. Invest in training your real agents to handle volume better, rather than building digital replicas of them. People are not content to be cloned.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Customer Support · 04</div>
+          <div class="sc-title">AI Sentiment Analysis Used to Prioritize "Valuable" Customers</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Companies are using real-time AI sentiment and revenue scoring to route support tickets — giving faster, more personalized service to high-value customers while lower-revenue customers wait longer or receive templated AI responses. The algorithm decides whose time matters more.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">James 2:1–4 warns against showing favoritism to the wealthy while dishonoring the poor. Algorithmic favoritism based on revenue score is the modern version of giving "special attention" to the rich and telling the poor to "stand there." Every customer bears the image of God regardless of their lifetime value score.</div>
+            <div class="sc-verse">Principle 04 — James 2:1–4: No favoritism. Every person has equal dignity.</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Use AI to improve service quality for everyone. Route by urgency and complexity of need — not revenue tier. If premium support is a paid tier, be transparent about it. Use AI to make your standard support excellent, so the gap between tiers is about speed. Every customer deserves a response that honors them as a person.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Customer Support · 05</div>
+          <div class="sc-title">AI Collecting Sensitive Data Under the Guise of "Better Service"</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">AI support systems harvest detailed emotional and behavioral data from support conversations — tone, frustration signals, life circumstances mentioned — and feed these into CRM profiles and marketing engines without the customer's knowledge. One telecom company used AI-detected financial stress signals from support calls to target customers with loan products.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">Using disclosed vulnerabilities for commercial exploitation is a profound betrayal of trust and a violation of the principle of loving our neighbor. It's an invasion of their privacy.</div>
+            <div class="sc-verse">Principle 06 — "Protect human privacy and dignity in all data practices"</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Publish a plain-language data policy explaining exactly what your AI captures in support interactions and how it's used. Create a firm policy: data shared in support contexts stays in support contexts. Never use support conversations to feed sales or marketing without explicit, specific consent. Earn trust, don't mine it.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HIRING SCENARIOS -->
+    <div id="dept-hiring" class="scenario-grid">
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Hiring · 01</div>
+          <div class="sc-title">AI Resume Screening That Buries Qualified Candidates</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Many companies now use AI to screen resumes before a human ever reads them. These systems are trained on historical hiring data — meaning they replicate whoever you hired in the past. Amazon famously scrapped its AI hiring tool after discovering it systematically penalized resumes with the word "women's" (e.g., women's college, women's chess club).</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">If your AI is trained on past decisions, and your past decisions reflected bias — conscious or not — you've automated and scaled injustice. God shows no partiality (Acts 10:34). An AI hiring system that consistently screens out certain groups is a Principle 04 violation: it increases inequality rather than addressing it, and buries the dignity of applicants who never get a fair look.</div>
+            <div class="sc-verse">Principle 04 — Acts 10:34: "God shows no partiality"</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Audit your hiring AI annually for demographic disparities in screening rates. Use AI to expand your talent pool — sourcing candidates from non-traditional backgrounds — not to narrow it. Set minimum human review thresholds: no candidate should be rejected without human eyes on their application. Document your screening criteria explicitly and biblically defend each one.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Hiring · 02</div>
+          <div class="sc-title">AI Video Interviews That Assess Personality Without Consent</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Companies like HireVue and others use AI to analyze video interviews — assessing facial microexpressions, speech patterns, word choice, and tone to score personality traits and predict job performance. Candidates often don't know their face movements are being scored by an algorithm. The scientific validity of these assessments is hotly disputed.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">This violates informed consent (a form of relational honesty) and makes consequential judgments about people based on AI assessments that are not scientifically validated. Reducing a human being to facial microexpressions treats people as data sources, not image-bearers. Principle 01 and Principle 07 both apply: honor dignity, and don't use AI outputs uncritically.</div>
+            <div class="sc-verse">Principle 01 + 07 — Dignity and Truth must both be honored</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">If you use AI-assisted interviewing, disclose exactly what the AI is assessing and how it influences decisions. Give candidates the ability to opt out. Use AI for logistics (scheduling, transcription, note-taking) rather than personality scoring. Trust human judgment for character assessment — it's what you're actually hiring for.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Hiring · 03</div>
+          <div class="sc-title">Eliminating Roles With AI Without Transition Support</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Companies across industries — accounting, legal, customer service, writing — are eliminating entry-level and mid-level positions as AI handles the work. In many cases, teams are given no transition plan, no retraining investment, and minimal notice. The economic logic is clean while the human cost is not.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">James Poulter's crucial distinction: "When the role becomes economically unviable, we're not saying the person is economically unviable." Treating people as interchangeable units of labor output is a Principle 02 and Principle 04 failure. We are called to care for those affected by the transitions we make — not just optimize our cost structure.</div>
+            <div class="sc-verse">Principle 02 — Ephesians 2:10: People are God's handiwork, not headcount</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Plan for role transitions before deploying AI at scale. Create retraining pathways funded by efficiency gains. Give affected employees first access to new AI-augmented roles. Be honest about the timeline. Commit publicly to how you'll invest in the humans whose work AI is changing. The question isn't "Can we eliminate this role?" but "What do we owe the person in it?"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Hiring · 04</div>
+          <div class="sc-title">AI Reference Checks That Score Based on Tone Analysis</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Startups have begun using AI to analyze the sentiment and enthusiasm level of references — scoring how positively references speak to infer the strength of their endorsement. Systems flag "lukewarm" references automatically. The candidate never knows their references were scored by a sentiment algorithm.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">This again violates informed consent and reduces human testimony — a deeply relational, trust-based act — to algorithmic sentiment scoring. Cultural communication styles vary enormously; what reads as lukewarm to an American AI may be effusive for someone from a different background. AI-scored references risk encoding cultural bias into hiring decisions.</div>
+            <div class="sc-verse">Principle 03 + 07 — Set boundaries on AI; test outputs for truth</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Use AI for reference logistics — collecting and organizing reference responses — not for scoring the relational content. Train your hiring team to conduct good reference conversations themselves. References are a trust system and require human interpretation. Ask better questions; listen better. Algorithms can't replace discernment.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Hiring · 05</div>
+          <div class="sc-title">Using AI to Scrape Candidate Data Without Permission</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Recruiters are using AI tools that scrape social media, public posts, court records, and consumer databases to build profiles on job candidates — far beyond what candidates have shared with the company. Some tools aggregate salary history, neighborhood data, and religious affiliations to "better understand" candidates.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">This violates the dignity and privacy of people who haven't consented to background assessment at this level. Many of these factors are legally protected classes. More fundamentally, it treats a person's whole life as data to be mined — not a human to be respected. Principle 03 is clear: protect human privacy in all data practices.</div>
+            <div class="sc-verse">Principle 03 — "Protect human privacy and dignity in all data practices"</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Establish clear data governance for your hiring process: what data may be collected, from what sources, with what disclosure. Disclose your background check process fully in your application. Never use AI tools that build unauthorized profiles. Ask: "Would this candidate consent to this if we told them?" If the answer is no, don't do it.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPERATIONS SCENARIOS -->
+    <div id="dept-operations" class="scenario-grid">
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Operations · 01</div>
+          <div class="sc-title">AI Surveillance of Remote Employees</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Remote work monitoring software powered by AI now tracks keystrokes, mouse movements, screenshots every 5 minutes, eye-tracking via webcam, and sentiment analysis of Slack messages — generating "productivity scores" for each employee. Companies like JP Morgan, Barclays, and UPS use AI monitoring extensively. Many employees don't know the depth of what's collected.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">Pervasive surveillance without clear consent treats employees as suspects rather than trusted image-bearers. It corrodes the relational trust that makes teams flourish (Principle 05). Monitoring that makes employees feel constantly watched creates anxiety, not excellence — and contradicts the dignity-honoring posture that Redemptive business requires.</div>
+            <div class="sc-verse">Principle 05 — Community corrodes when presence becomes surveillance</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">If you use any monitoring software, disclose it fully — every capability, every data point collected. Ask employees to co-create the monitoring policy. Use AI to track outcomes and deliverables, not moment-to-moment activity. Better yet: build a culture of trust and clear accountability that doesn't require algorithmic surveillance. Manage by results, not keystrokes.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Operations · 02</div>
+          <div class="sc-title">AI Used for Vendor Selection Without Human Due Diligence</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Procurement teams are outsourcing vendor evaluation entirely to AI platforms that score vendors on price, compliance, and performance data — making selection decisions algorithmically. Teams act on AI recommendations without reviewing the underlying methodology, ethical record, or business practices of the vendors being selected or eliminated.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">Stewardship requires active wisdom, not passive algorithmic deference. If your AI selects vendors whose practices harm workers, damage communities, or contradict your values — you bear responsibility for those outcomes. "The AI chose them" is not a stewardship defense. Principle 04 (Stewardship) and Principle 06 (Responsibility) both require human accountability in consequential decisions.</div>
+            <div class="sc-verse">Principle 04 + 06 — Stewards own outcomes. Algorithms don't.</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Use AI to gather and organize vendor data — never to make final vendor decisions autonomously. Develop a values-aligned vendor scorecard that includes ethical criteria (labor practices, environmental record, data policies). Require human sign-off on all vendor selections. Ask the Vendor Ethics Question from Principle 03: "Do we know who we're doing business with and what they stand for?"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Operations · 03</div>
+          <div class="sc-title">AI-Automated Pricing That Exploits Vulnerable Customers</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Dynamic pricing AI raises prices in real-time based on demand signals, location data, and user behavior. Surge pricing for rideshare during emergencies, hotel AI systems raising rates when flight cancellations strand travelers, and insurance AI charging higher premiums based on neighborhood data all represent AI exploiting vulnerability for profit.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">Proverbs 11:26 warns that exploiting scarcity and vulnerability for maximum extraction is the opposite of Kingdom stewardship. Dynamic pricing designed to identify and exploit the moment of maximum customer vulnerability violates the call to love our neighbor.</div>
+            <div class="sc-verse">Principle 04 — Proverbs 11:26: Don't exploit need. Serve it.</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Build ethical guardrails into your pricing AI: price caps during emergencies, policies against exploiting distress signals, and transparency about how pricing varies. Use dynamic pricing to optimize supply matching, not to extract from the vulnerable. Ask publicly: "Would our customers be proud of how our pricing works if they understood it fully?" If not — redesign it.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Operations · 04</div>
+          <div class="sc-title">Using a Vendor Whose AI Ethics Contradict Your Values</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Most businesses don't investigate the ethical record of the AI platforms they use. They select based on capability and cost. They are unaware that the vendor may generate harmful content, train on non-consented data, employ exploitative labor practices in data annotation, or have leadership whose stated values actively contradict the Gospel.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">Technology and the tool may be neutral, but the companies that create them are not. When you pay a vendor, you fund their practices. Principle 03 raises the Vendor Ethics Question directly: "Does using this platform financially support harmful activities?"</div>
+            <div class="sc-verse">Principle 03 — The Vendor Ethics Question demands an answer</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">Add vendor ethics to your procurement process. Research the company's content policies, data practices, labor standards, and leadership values. Create a "vendor values scorecard" aligned with your principles. Evaluate switching costs honestly. Sometimes the cost is worth it; sometimes you stay and advocate for change. Either way, make the decision prayerfully and explicitly, not by default.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="sc-header">
+          <div class="sc-tag">Operations · 05</div>
+          <div class="sc-title">AI Decisions With No Documented Accountability Owner</div>
+        </div>
+        <div class="sc-body">
+          <div>
+            <div class="sc-col-label what">What businesses are doing</div>
+            <div class="sc-text">Most businesses deploy AI tools without assigning a specific human owner who is accountable for the outputs, errors, and ethical implications of that tool. When something goes wrong — biased hiring output, a privacy breach, a customer harmed by AI advice — there is no clear owner. "The system did it" becomes the default explanation.</div>
+          </div>
+          <div>
+            <div class="sc-col-label wrong">What's wrong biblically</div>
+            <div class="sc-text">Romans 14:12 is direct, accountability is not optional for stewards. Authority without accountability is irresponsible stewardship.</div>
+            <div class="sc-verse">Principle 06 — Romans 14:12: Every AI decision needs a human owner</div>
+          </div>
+          <div>
+            <div class="sc-col-label instead">What to do instead</div>
+            <div class="sc-text">For every AI system you operate, document: who owns it, who can override it, who reviews its outputs, and who is responsible when it causes harm. Build an AI Governance Register — a living document updated quarterly. Consider forming an AI ethics advisory group, even informally. The rule is: no AI in production without a named human accountable for its behavior.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: RED FLAGS -->
+  <div class="section section-alt">
+    <div class="section-eyebrow">Section 06 — Warning Signs</div>
+    <div class="section-title">Red Flags Reference</div>
+    <div class="section-lead">Screenshot this. Post it in your Slack. Share it in your next leadership meeting. These are the warning signs that your AI use has drifted from Kingdom to Responsible — or worse.</div>
+
+    <div class="redflag-grid">
+      <div class="redflag-card">
+        <div class="rf-icon">🔴</div>
+        <div class="rf-title">No Human Override</div>
+        <div class="rf-text">Any AI system making decisions about people with no clear human override mechanism. If no one can say "stop" — it's a governance failure.</div>
+      </div>
+      <div class="redflag-card">
+        <div class="rf-icon">🔴</div>
+        <div class="rf-title">"The AI Decided"</div>
+        <div class="rf-text">Any organization where "the algorithm decided" is an acceptable final answer when a human is harmed. Algorithms don't bear moral responsibility — you do.</div>
+      </div>
+      <div class="redflag-card">
+        <div class="rf-icon">🔴</div>
+        <div class="rf-title">No Disclosure Policy</div>
+        <div class="rf-text">AI-generated content, chatbots, or communications sent to customers or employees without any disclosure policy in place. Silence is deception by omission.</div>
+      </div>
+      <div class="redflag-card">
+        <div class="rf-icon">🔴</div>
+        <div class="rf-title">Speed Over Accuracy</div>
+        <div class="rf-text">Deploying AI quickly to hit a deadline before its accuracy and safety have been validated. "Move fast and break things" is a Babel mindset, not a Kingdom one.</div>
+      </div>
+      <div class="redflag-card">
+        <div class="rf-icon">🔴</div>
+        <div class="rf-title">AI in Care Roles</div>
+        <div class="rf-text">Any chatbot or AI system positioned as a counselor, spiritual guide, or emotional support tool without immediate human escalation pathways built in.</div>
+      </div>
+      <div class="redflag-card">
+        <div class="rf-icon">🔴</div>
+        <div class="rf-title">Unchecked Vendor Use</div>
+        <div class="rf-text">Using AI platforms whose content policies, data practices, or leadership values you haven't reviewed. Ignorance is not innocence when it comes to stewardship.</div>
+      </div>
+      <div class="redflag-card">
+        <div class="rf-icon">🔴</div>
+        <div class="rf-title">Efficiency Over Dignity</div>
+        <div class="rf-text">Any decision where saving money was the primary justification for removing human involvement from a process that affects people's dignity or livelihood.</div>
+      </div>
+      <div class="redflag-card">
+        <div class="rf-icon">🔴</div>
+        <div class="rf-title">No Audit Trail</div>
+        <div class="rf-text">AI tools operating in your business with no logging, no review process, and no ability to understand what decisions they made and why. If you can't audit it, you can't own it.</div>
+      </div>
+      <div class="redflag-card">
+        <div class="rf-icon">🔴</div>
+        <div class="rf-title">Scripture Untested</div>
+        <div class="rf-text">Any AI-generated content that touches theology, ethics, or spiritual guidance published without human theological review. AI produces plausible — not necessarily true.</div>
+      </div>
+      <div class="redflag-card">
+        <div class="rf-icon">🔴</div>
+        <div class="rf-title">Silent Surveillance</div>
+        <div class="rf-text">Monitoring employees, customers, or vendors using AI tools whose scope has never been disclosed to them. Watching people without their knowledge violates relational trust.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: POLICY TEMPLATE -->
+  <div class="section">
+    <div class="section-eyebrow">Section 07 — Templates &amp; Tools</div>
+    <div class="section-title">AI Policy Template</div>
+    <div class="section-lead">Copy this. Customize it. Make it yours. Every business using AI needs a written policy for accountability. This is the foundation of trustworthy AI use in your organization.</div>
+
+    <div class="policy-section">
+      <div class="policy-heading">1. Our Commitment (Mission Statement)</div>
+      <div class="policy-field">
+        <strong>[Company Name]</strong> is committed to using artificial intelligence in ways that honor human dignity, pursue truth, serve our community, and reflect our biblical values. We recognize that AI is a powerful tool — and that tools require wisdom, not just skill, to use well. We are responsible stewards of AI.<br><br>
+        <em>Customize: Insert your company name and add 1–2 sentences about what your business values specifically.</em>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-heading">2. What AI We Use and Why</div>
+      <div class="policy-field">
+        We currently use the following AI tools in our operations:<br><br>
+        <strong>[Tool Name] — [Department] — [Purpose]</strong><br>
+        e.g., ChatGPT — Marketing — First-draft copy generation (reviewed and approved by human team before publication)<br>
+        e.g., HubSpot AI — Sales — Lead scoring and follow-up suggestions (all outreach reviewed by sales reps)<br><br>
+        <em>Customize: List every AI tool your team uses. This forces clarity and creates accountability.</em>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-heading">3. What AI May Not Do (Non-Negotiable Limits)</div>
+      <div class="policy-field">
+        The following uses of AI are permanently off-limits at [Company Name], regardless of efficiency gains:<br><br>
+        • AI may not interact with customers in emotional distress without immediate human escalation<br>
+        • AI may not make final hiring or firing decisions<br>
+        • AI may not generate or publish theological content without human pastoral review<br>
+        • AI may not be presented as a human to customers or partners<br>
+        • AI may not collect or use personal data beyond what customers have explicitly consented to<br>
+        • AI may not monitor employee activity without full disclosure and employee acknowledgment<br><br>
+        <em>Customize: Add your organization-specific limits based on your industry, ministry context, and principles.</em>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-heading">4. Disclosure Standards</div>
+      <div class="policy-field">
+        We are committed to transparency about our use of AI:<br><br>
+        • All AI-assisted content will be disclosed where it is produced for public audiences using: <strong>[your disclosure language, e.g., "Drafted with AI assistance, reviewed and approved by our team"]</strong><br>
+        • Customer-facing AI tools will be clearly identified as AI — not given human names or personas<br>
+        • Employees will be informed of all AI monitoring tools used in their work environment<br>
+        • We will not publish AI-generated content as original human thought leadership without meaningful human editorial contribution<br><br>
+        <em>Customize: Set your specific disclosure language for each channel (email, social, website, support).</em>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-heading">5. Accountability Structure</div>
+      <div class="policy-field">
+        Every AI tool in our organization has a named human owner responsible for its use:<br><br>
+        <strong>AI Policy Owner:</strong> [Name, Title] — Overall accountability for AI governance<br>
+        <strong>Review Cadence:</strong> Quarterly AI audit covering tool performance, ethical incidents, and policy compliance<br>
+        <strong>Escalation Path:</strong> Any employee who identifies an AI-related ethical concern reports to [Name/Role] within [timeframe]<br>
+        <strong>Override Authority:</strong> [Name/Role] has authority to pause or discontinue any AI tool pending review<br><br>
+        <em>Customize: Name real people. Vague accountability is no accountability.</em>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-heading">6. Our Biblical Foundation</div>
+      <div class="policy-field">
+        This policy is grounded in the belief that every human being bears the image of God (Genesis 1:27), that we are called to act justly, love mercy, and walk humbly (Micah 6:8), and that we are stewards — not owners — of the resources, tools, and people entrusted to us (1 Corinthians 10:31). We will use AI to pursue the Kingdom, not merely profit. We will measure success not by efficiency alone, but by whether the people we serve are honored, protected, and flourishing.<br><br>
+        <em>This section is optional but powerful — it signals to your team and customers what your "why" is.</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: DECISION CHECKLIST -->
+  <div class="section section-alt">
+    <div class="section-eyebrow">Section 08 — Decision Tools</div>
+    <div class="section-title">The Redemptive AI Decision Checklist</div>
+    <div class="section-lead">Use this before deploying any new AI tool or process. Check each item and only proceed if you can answer honestly.</div>
+
+    <div style="margin-bottom: 16px; font-size: 13px; font-weight: 600; color: var(--k-navy);">Feasibility &amp; Purpose</div>
+    <div class="checklist" id="checklist">
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have tested this AI tool for accuracy in our specific use case — not just in demos.</div>
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have identified a clear, specific purpose this AI serves — not just deployed it because it's available.</div>
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have confirmed this AI serves a genuine human need, not just an efficiency metric.</div>
+    </div>
+
+    <div style="margin: 16px 0 10px; font-size: 13px; font-weight: 600; color: var(--k-navy);">Human Dignity</div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have identified every person this AI touches — customers, employees, vendors — and considered their dignity.</div>
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have determined which interactions must remain human-to-human and cannot be delegated to AI.</div>
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have built mandatory human escalation triggers for any high-emotion or high-stakes interactions.</div>
+    </div>
+
+    <div style="margin: 16px 0 10px; font-size: 13px; font-weight: 600; color: var(--k-navy);">Ethics &amp; Boundaries</div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have reviewed the AI vendor's content policies, data practices, and ethical record.</div>
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have documented clear limits for what this AI may and may not do in our organization.</div>
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have considered whether this AI could be used to manipulate, deceive, or exploit users — and guarded against it.</div>
+    </div>
+
+    <div style="margin: 16px 0 10px; font-size: 13px; font-weight: 600; color: var(--k-navy);">Transparency &amp; Disclosure</div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have a disclosure standard for this AI tool — customers/employees know when they're interacting with AI.</div>
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>AI-generated content produced by this tool will be labeled or attributed appropriately.</div>
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have communicated this AI's role internally so our team understands their accountability.</div>
+    </div>
+
+    <div style="margin: 16px 0 10px; font-size: 13px; font-weight: 600; color: var(--k-navy);">Accountability &amp; Governance</div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>A named human is accountable for this AI tool's outputs, errors, and ethical behavior.</div>
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have a review process scheduled (at minimum quarterly) to audit this tool's performance and ethics.</div>
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>There is a clear process for pausing or removing this AI tool if it causes harm.</div>
+      <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>We have documented this AI use case in our AI Policy and shared it with relevant stakeholders.</div>
+    </div>
+
+    <div class="gutcheck" style="margin-top: 20px;">
+      <div class="gutcheck-label">Final Question</div>
+      If every customer, employee, and community member affected by this AI knew exactly how it worked and why we deployed it, would we be proud of that conversation? If not: redesign before you deploy.
+    </div>
+  </div>
+
+  <!-- SECTION 9: BONUS -->
+  <div class="section">
+    <div class="section-eyebrow">Section 09 — Bonus Materials</div>
+    <div class="section-title">Bonus: Navigating Tensions</div>
+    <div class="section-lead">These seven principles don't always agree with each other. When they collide, here's how to navigate the tension without abandoning either side.</div>
+
+    <div class="grid2">
+      <div class="card-sm" style="border-top: 3px solid var(--k-blue);">
+        <div class="card-sm-title">Privacy vs. Transparency</div>
+        <div class="card-sm-text" style="margin-bottom: 8px;">Employees deserve privacy. Your stakeholders deserve transparency about your AI use. When these collide — example: publishing your AI governance policy vs. exposing how you monitor employee productivity — the rule is: be transparent externally about what AI categories you use; be discreet internally about individual-level data.</div>
+        <div class="warn-bar">⚠️ Never let "transparency" become a cover for publishing individual employee data without consent.</div>
+      </div>
+      <div class="card-sm" style="border-top: 3px solid var(--k-blue);">
+        <div class="card-sm-title">Stewardship vs. Dignity</div>
+        <div class="card-sm-text" style="margin-bottom: 8px;">Efficiency serves stewardship — but efficiency alone can erode dignity. When AI automation reduces headcount, the stewardship question isn't just "did we save money?" but "did we honor the people whose roles changed?" Redemptive stewardship invests efficiency gains back into people.</div>
+        <div class="green-bar">✓ Rule: Use AI efficiency gains to fund human flourishing — retraining, new roles, community investment.</div>
+      </div>
+      <div class="card-sm" style="border-top: 3px solid var(--k-blue);">
+        <div class="card-sm-title">Speed vs. Discernment</div>
+        <div class="card-sm-text" style="margin-bottom: 8px;">Business pressure demands fast AI deployment. Biblical wisdom demands discernment before action. The resolution: build a lean 72-hour discernment sprint for every new AI tool — run the 5 Questions, assign an owner, set review dates. Speed and wisdom aren't opposites; poor process is the enemy.</div>
+        <div class="green-bar">✓ Rule: Fast deployment + slow review is not stewardship. Build the process in advance.</div>
+      </div>
+      <div class="card-sm" style="border-top: 3px solid var(--k-blue);">
+        <div class="card-sm-title">Community vs. Accessibility</div>
+        <div class="card-sm-text" style="margin-bottom: 8px;">AI can make your services accessible to thousands who couldn't otherwise reach you. This serves community. But AI can also replace the human presence that makes community real. The resolution: use AI to scale access; use humans to deliver presence. These are not competing, they're complementary when deployed with intention.</div>
+        <div class="green-bar">✓ Rule: AI scales the what. Humans sustain the who.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 28px;">
+      <div class="section-eyebrow" style="margin-bottom: 10px;">Bonus: The Vendor Ethics Evaluation</div>
+      <div class="card-sm">
+        <div class="card-sm-title" style="margin-bottom: 12px;">Before signing any AI vendor contract, answer these five questions:</div>
+        <div class="checklist">
+          <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>What content does this vendor's AI model generate — and does it generate content that contradicts our values or Scripture?</div>
+          <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>How was this model's training data sourced — and was it sourced ethically with appropriate permissions?</div>
+          <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>What are the vendor's stated values — and are they compatible with ours, or do they actively contradict them?</div>
+          <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>Does using this vendor financially support activities or initiatives we would not otherwise support?</div>
+          <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>If our customers and community knew we used this vendor — would we be able to explain the decision with confidence and conviction?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(143,218,255,0.6); margin-bottom: 12px;">Next Steps</div>
+    <div class="cta-title">You Now Have the Framework.<br>Here's What to Do Next.</div>
+    <div class="cta-sub">Don't let this sit in a folder. The Kingdom AI Playbook only works when it's in the room — in meetings, in hiring conversations, in product and service reviews. Here's your 30-day action plan.</div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; max-width: 680px; margin: 0 auto 32px; text-align: left;">
+      <div style="background: rgba(31,103,255,0.15); border: 1px solid rgba(31,103,255,0.3); border-radius: 0; padding: 16px;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--k-sky); margin-bottom: 6px;">Week 1</div>
+        <div style="font-size: 13px; color: white; font-weight: 600; margin-bottom: 6px;">Run the 5 Questions</div>
+        <div style="font-size: 11px; color: rgba(233,240,255,0.65);">Apply the framework to one AI tool your team already uses. Document what you find.</div>
+      </div>
+      <div style="background: rgba(31,103,255,0.15); border: 1px solid rgba(31,103,255,0.3); border-radius: 0; padding: 16px;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--k-sky); margin-bottom: 6px;">Week 2</div>
+        <div style="font-size: 13px; color: white; font-weight: 600; margin-bottom: 6px;">Draft Your AI Policy</div>
+        <div style="font-size: 11px; color: rgba(233,240,255,0.65);">Use the template in Section 07. Complete every field. Name real people as owners.</div>
+      </div>
+      <div style="background: rgba(31,103,255,0.15); border: 1px solid rgba(31,103,255,0.3); border-radius: 0; padding: 16px;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--k-sky); margin-bottom: 6px;">Week 3</div>
+        <div style="font-size: 13px; color: white; font-weight: 600; margin-bottom: 6px;">Run a Team Session</div>
+        <div style="font-size: 11px; color: rgba(233,240,255,0.65);">Walk your leadership team through 2–3 scenarios from Section 05. Surface real tensions.</div>
+      </div>
+      <div style="background: rgba(31,103,255,0.15); border: 1px solid rgba(31,103,255,0.3); border-radius: 0; padding: 16px;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--k-sky); margin-bottom: 6px;">Week 4</div>
+        <div style="font-size: 13px; color: white; font-weight: 600; margin-bottom: 6px;">Publish + Commit</div>
+        <div style="font-size: 11px; color: rgba(233,240,255,0.65);">Share your AI policy internally. Set your first quarterly review date. Make it public if you're ready.</div>
+      </div>
+    </div>
+
+    <div>
+      <button class="cta-btn" onclick="sendPrompt('I want to apply the Redemptive AI framework to my business. Help me run the 5-Question filter on one of my current AI tools.')">Contact Us for a Custom Training or to Draft your AI policy</button>
+      <button class="cta-btn outline" onclick="sendPrompt('Help me draft a Redemptive AI policy for my organization using the template from the Kindled playbook.')">Clare Oparo, oparoclare@gmail.com↗</button>
+    </div>
+
+    <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: rgba(233,240,255,0.4);">
+      A Kindled Resource — Equipping Christian Businesses to Faithfully Engage AI for Kingdom Advancement
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showDept(dept, tab) {
+  document.querySelectorAll('.scenario-grid').forEach(g => g.classList.remove('visible'));
+  document.querySelectorAll('.dept-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('dept-' + dept).classList.add('visible');
+  tab.classList.add('active');
+}
+</script>
